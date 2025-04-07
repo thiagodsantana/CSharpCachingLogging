@@ -1,12 +1,26 @@
-﻿namespace CSharpCachingLogging.Log.API.Services
+﻿using Microsoft.Extensions.Logging;
+using System;
+
+namespace CSharpCachingLogging.Log.API.Services
 {
     public class DefaultLoggingService(ILogger<DefaultLoggingService> logger)
     {
-        public void LogInformation()
+        public void ExecutarRotina()
         {
-            logger.LogRequestReceived();
-            logger.LogDebugInfo("Debug via Source Generator.");
-            logger.LogErrorOccurred("Erro via Source Generator.");
+           string requestId = Guid.NewGuid().ToString(); // Gera um RequestId se não for fornecido
+           string userId = $"user-{new Random().Next(1000, 9999)}"; // Simula um UserId aleatório
+
+            logger.LogInformation("Ação registrada: {Action} - {Details} | RequestId: {RequestId} | UserId: {UserId}",
+                                   nameof(DefaultLoggingService), "Gerando log de information.", requestId, userId);
+
+            logger.LogDebug("Debugging detalhes: {Details} | RequestId: {RequestId} | UserId: {UserId}",
+                             "Gerando log de debug.", requestId, userId);
+
+            logger.LogWarning("Ação registrada: {Action} - {Details} | RequestId: {RequestId} | UserId: {UserId}",
+                                   nameof(DefaultLoggingService), "Gerando log de Warning.", requestId, userId);
+
+            logger.LogError("Erro detectado: {Details} | RequestId: {RequestId} | UserId: {UserId}",
+                             "Gerando log de error.", requestId, userId);
         }
     }
 }
