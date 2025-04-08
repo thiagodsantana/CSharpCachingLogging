@@ -10,12 +10,13 @@ namespace CSharpCachingLogging.Log.API.Services
             string requestId = Guid.NewGuid().ToString(); // Gera um RequestId se não for fornecido
             string userId = $"user-{new Random().Next(1000, 9999)}"; // Simula um UserId aleatório
 
-            // Source Generation
+            // Com Source Generation
             logger.LogRequestReceivedAuto(requestId, userId);
             logger.LogDebugInfoAuto("Executando rotina", requestId, userId);
             logger.LogErrorOccurredAuto("Erro ao executar rotina.", requestId, userId);
 
-            // Ilogger
+            
+            // Sem Source Generation
             if (logger.IsEnabled(LogLevel.Information))
             {
                 logger.LogInformation("Ação registrada: {Action} - {Details} | RequestId: {RequestId} | UserId: {UserId}",
