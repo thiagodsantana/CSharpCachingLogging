@@ -10,10 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddLogging(); // Certifique-se de que o logging está registrado
 builder.Services.AddSwaggerGen();
 
-// Configuração do logger usando Serilog
-//Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
-//builder.Host.UseSerilog();
-
 // Configura a conexão com o Redis
 builder.Services.AddSingleton(ConnectionMultiplexer.Connect(connection));
 

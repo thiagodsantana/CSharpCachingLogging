@@ -7,11 +7,20 @@ namespace CSharpCachingLogging.Log.API.Services
     {
         public void ExecutarRotina()
         {
-           string requestId = Guid.NewGuid().ToString(); // Gera um RequestId se não for fornecido
-           string userId = $"user-{new Random().Next(1000, 9999)}"; // Simula um UserId aleatório
+            string requestId = Guid.NewGuid().ToString(); // Gera um RequestId se não for fornecido
+            string userId = $"user-{new Random().Next(1000, 9999)}"; // Simula um UserId aleatório
 
-            logger.LogInformation("Ação registrada: {Action} - {Details} | RequestId: {RequestId} | UserId: {UserId}",
-                                   nameof(DefaultLoggingService), "Gerando log de information.", requestId, userId);
+            // Source Generation
+            logger.LogRequestReceivedAuto(requestId, userId);
+            logger.LogDebugInfoAuto("Executando rotina", requestId, userId);
+            logger.LogErrorOccurredAuto("Erro ao executar rotina.", requestId, userId);
+
+            // Ilogger
+            if (logger.IsEnabled(LogLevel.Information))
+            {
+                logger.LogInformation("Ação registrada: {Action} - {Details} | RequestId: {RequestId} | UserId: {UserId}",
+                                       nameof(DefaultLoggingService), "Gerando log de information.", requestId, userId);
+            }
 
             logger.LogDebug("Debugging detalhes: {Details} | RequestId: {RequestId} | UserId: {UserId}",
                              "Gerando log de debug.", requestId, userId);

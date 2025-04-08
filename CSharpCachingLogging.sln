@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpCaching.Redis.API", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpCachingLogging.Log.API", "CSharpCachingLogging.Log.API\CSharpCachingLogging.Log.API.csproj", "{B187EC00-CD60-4C2F-84CB-E097C2384DC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpCachingLogging.Log.Benchmark", "CSharpCachingLogging.Log.Benchmark\CSharpCachingLogging.Log.Benchmark.csproj", "{3020D878-C24A-4F6C-9464-42BFCDD391AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{B187EC00-CD60-4C2F-84CB-E097C2384DC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B187EC00-CD60-4C2F-84CB-E097C2384DC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B187EC00-CD60-4C2F-84CB-E097C2384DC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3020D878-C24A-4F6C-9464-42BFCDD391AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3020D878-C24A-4F6C-9464-42BFCDD391AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3020D878-C24A-4F6C-9464-42BFCDD391AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3020D878-C24A-4F6C-9464-42BFCDD391AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

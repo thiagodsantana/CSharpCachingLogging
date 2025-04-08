@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CSharpCachingLogging.ApiService\CSharpCaching.Redis.API.csproj" />
     <ProjectReference Include="..\CSharpCachingLogging.Log.API\CSharpCachingLogging.Log.API.csproj" />
+    <ProjectReference Include="..\CSharpCachingLogging.Log.Benchmark\CSharpCachingLogging.Log.Benchmark.csproj" />
   </ItemGroup>
 
   <ItemGroup>

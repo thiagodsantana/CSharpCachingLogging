@@ -20,8 +20,9 @@ namespace CSharpCaching.Redis.API.Services
             logger.LogInformation("Registrando empréstimo {IdEmprestimo} no Redis", idEmprestimo);
 
             // Armazenando String
-            await _redis.StringSetAsync("chave", "valor", TimeSpan.FromMinutes(30));
-            var valorArmazenado = await _redis.StringGetAsync("chave");
+            await _redis.StringSetAsync("tokenAPI", "938333-84474-85858-216300", TimeSpan.FromMinutes(30));
+            var valorArmazenado = await _redis.StringGetAsync("tokenAPI");
+
 
             var dadosEmprestimo = new HashEntry[]
             {
@@ -29,16 +30,14 @@ namespace CSharpCaching.Redis.API.Services
                 new("Valor", valor),
                 new("Timestamp", DateTime.UtcNow.ToString())
             };
-
-
             // Armazena os detalhes do empréstimo no Redis como um hash
-            var key = $"{DadosEmprestimos}:{idEmprestimo}";
-            await _redis.HashSetAsync(key, dadosEmprestimo);
-            
-            // Adiciona o ID do empréstimo na fila para processamento futuro
+            await _redis.HashSetAsync($"{DadosEmprestimos}:{idEmprestimo}", dadosEmprestimo);
+
+            // Adiciona o ID do empréstimo na fila para processamento futuro (fim da fila)
             await _redis.ListRightPushAsync(FilaEmprestimos, idEmprestimo);
 
             // Mantém um conjunto de usuários que solicitaram empréstimos
+            // Não permitem valores duplicados e não garantem ordem.
             await _redis.SetAddAsync(UsuariosEmprestimos, idUsuario);
 
             // Adiciona o empréstimo a um conjunto ordenado baseado no valor do empréstimo
